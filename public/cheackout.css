@@ -1,0 +1,359 @@
+/* ===================================== */
+/* ⭐️ 최종 결제 모듈 레이아웃 ⭐️ */
+/* ===================================== */
+
+#checkout-container {
+    display: flex;
+    max-width: 900px; /* POS보다 약간 좁게 설정 */
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 영역 1: 주문 상세 (좌측) */
+#order-details-area {
+    width: 55%;
+    padding: 25px;
+    border-right: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #0077cc; /* 강조색 사용 */
+}
+
+#ticket-number-display {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #cc0000;
+}
+
+/* 매장/포장 선택 버튼 */
+.dine-in-takeout-select {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.dine-in-takeout-select .select-btn {
+    flex-grow: 1;
+    padding: 12px;
+    background: #e9ecef;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.dine-in-takeout-select .select-btn.active {
+    background: #0077cc;
+    color: white;
+    border-color: #0077cc;
+}
+
+/* 최종 주문 목록 */
+#final-order-list {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1;
+    overflow-y: auto; /* 목록이 길어지면 스크롤 */
+    max-height: 350px; 
+    margin-bottom: 20px;
+}
+.final-order-item {
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.final-order-item .item-title { flex: 4; font-weight: 600; }
+.final-order-item .item-qty { flex: 1; text-align: center; }
+.final-order-item .item-subtotal { flex: 2; text-align: right; font-weight: bold; }
+.item-memo { 
+    font-size: 0.85em; 
+    color: #f44336; /* 메모 강조 */
+    padding-left: 10px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* 금액 요약 상세 */
+.summary-breakdown {
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+.summary-breakdown > div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 1em;
+}
+.summary-total-row {
+    font-size: 1.5em !important;
+    font-weight: bold;
+    color: #cc0000;
+    border-top: 2px solid #cc0000;
+    padding-top: 10px;
+    margin-top: 10px !important;
+}
+
+/* 영역 2: 결제 및 회원 처리 (우측) */
+#payment-actions-area {
+    width: 45%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.payment-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+.payment-section h3 {
+    font-size: 1.2em;
+    color: #0077cc;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* 멤버십 입력 */
+.member-input-row { display: flex; gap: 8px; margin-bottom: 8px; }
+#member-phone { 
+    flex-grow: 1; 
+    padding: 10px; 
+    border: 1px solid #ddd; 
+    border-radius: 4px;
+}
+.point-use-row { display: flex; gap: 8px; align-items: center; }
+#point-to-use { 
+    flex-grow: 1; 
+    padding: 10px; 
+    border: 1px solid #ddd; 
+    border-radius: 4px;
+}
+
+/* 결제 수단 그리드 */
+.payment-method-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2x2 */
+    gap: 10px;
+}
+.pay-method {
+    padding: 15px;
+    background: #e9ecef;
+    border: 1px solid #ddd;
+    font-weight: 600;
+}
+.pay-method:hover { background: #d0e7ff; }
+
+/* 현금 모듈 */
+.cash-module {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+}
+.cash-module input { width: 100%; margin-top: 5px; margin-bottom: 10px; }
+.change-display { font-size: 1.1em; font-weight: bold; color: #0077cc; }
+
+
+/* 최종 실행 버튼 */
+#final-checkout-btn, #cancel-checkout-btn {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+}
+#final-checkout-btn {
+    background: #4CAF50; /* 녹색으로 결제 강조 */
+    color: white;
+}
+#cancel-checkout-btn {
+    background: #f44336; /* 빨간색으로 취소 강조 */
+    color: white;
+}
+
+.receipt-select-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.receipt-select-row span { font-weight: 600; }
+#employee-id {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* 작은 버튼 스타일 */
+.func-btn.small-btn {
+    padding: 5px 10px;
+    font-size: 0.9em;
+    flex-grow: 0;
+    width: auto;
+}
+.func-btn.blue-btn { background: #0077cc; color: white; border-color: #0077cc;}
+
+/* ⭐️ 수정된 매장/포장 표시 스타일 ⭐️ */
+.dine-in-takeout-select {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    margin-bottom: 15px;
+}
+/* 확인용 텍스트 스타일 */
+.selection-display { 
+    flex-grow: 0; /* 버튼처럼 커지지 않게 함 */
+    padding: 12px 25px; /* 패딩을 약간 늘려 시인성 확보 */
+    background: #e9ecef;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 1.1em;
+    color: #333;
+    /* 클릭 관련 스타일 제거: */
+    cursor: default; 
+    pointer-events: none; /* 클릭 이벤트 완전 차단 */
+}
+/* 선택된 상태 강조 (메인에서 넘어온 상태) */
+.selection-display.active {
+    background: #0077cc;
+    color: white;
+    border-color: #0077cc;
+}
+
+
+/* ===================================== */
+/* ⭐️ 모달 팝업 (금액 확인 창) 스타일 ⭐️ */
+/* ===================================== */
+
+/* 모달 전체 배경 (화면 전체 덮기) */
+.modal-backdrop {
+    position: fixed; /* 뷰포트에 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* 반투명 검은색 오버레이 */
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    z-index: 1000; /* 다른 요소 위에 표시되도록 가장 높은 z-index 부여 */
+}
+
+/* 모달 내용 상자 */
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px; /* 적당한 크기 제한 */
+    text-align: center;
+    transform: scale(1); /* 애니메이션을 위해 기본값 설정 */
+    transition: transform 0.3s ease-out;
+}
+
+.modal-content h3 {
+    color: #cc0000;
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+/* 모달 버튼 스타일 */
+.modal-footer button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+    width: 45%;
+}
+
+#modal-cancel-confirm {
+    background: #ccc;
+    color: #333;
+}
+
+#modal-proceed-payment {
+    background: #4CAF50; /* 결제 완료 버튼과 동일한 강조색 */
+    color: white;
+}
+
+/* * 참고: hidden 클래스가 붙어있으므로 초기에는 안 보입니다.
+* jQuery에서 $('#confirm-modal').fadeIn(300); 호출 시 보입니다.
+*/
+.hidden {
+    display: none !important;
+}
+
+/* ===================================== */
+/* ⭐️ 반응형 디자인 (768px 이하) ⭐️ */
+/* ===================================== */
+
+@media (max-width: 768px) {
+    #checkout-container {
+        flex-direction: column; /* 세로로 쌓이도록 변경 */
+        max-width: 100%;
+        margin: 0;
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    #order-details-area, #payment-actions-area {
+        width: 100%; /* 너비를 100%로 확장 */
+        padding: 15px;
+        border-right: none;
+    }
+
+    #order-details-area {
+        border-bottom: 1px solid #ddd; /* 주문 영역과 결제 영역 분리 */
+    }
+
+    #final-order-list {
+        max-height: 30vh; /* 모바일에서 주문 목록 높이를 제한하여 스크롤 유도 */
+    }
+
+    .checkout-header h2 { font-size: 1.3em; }
+    #ticket-number-display { font-size: 1.1em; }
+
+    .summary-total-row { font-size: 1.3em !important; }
+    
+    .payment-method-grid {
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* 모바일에서는 4열로 더 작게 배치 */
+    }
+    .pay-method {
+        padding: 10px 5px; /* 버튼 크기 축소 */
+        font-size: 0.9em;
+    }
+    
+    #final-checkout-btn, #cancel-checkout-btn {
+        padding: 12px;
+        font-size: 1.1em;
+    }
+}

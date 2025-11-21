@@ -1,0 +1,144 @@
+/* 📁 src/styles/complete.css - Tailwind CSS 미적용 환경을 위한 순수 CSS */
+
+/* ----------------------------------------------------
+ * 1. 기본 스타일 및 레이아웃
+ * ---------------------------------------------------- */
+#complete-container {
+    /* 기존 Tailwind 클래스 대체: flex flex-col items-center justify-center max-w-lg mx-auto my-10 p-8 bg-white rounded-2xl shadow-2xl font-sans */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 512px; /* max-w-lg (512px) */
+    width: 90%; /* 화면 너비에 맞게 조정 */
+    margin: 40px auto; /* my-10 (40px) */
+    padding: 32px; /* p-8 (32px) */
+    background-color: white;
+    border-radius: 16px; /* rounded-2xl */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-2xl */
+    font-family: sans-serif; /* font-sans */
+    text-align: center;
+}
+
+#complete-container .text-8xl {
+    font-size: 6rem; /* text-8xl */
+    margin-bottom: 24px; /* mb-6 */
+}
+
+#complete-container .text-4xl {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 800; /* font-extrabold */
+    color: #333;
+    margin-bottom: 12px; /* mb-3 */
+}
+
+/* ----------------------------------------------------
+ * 2. 주문 번호 박스 스타일
+ * ---------------------------------------------------- */
+#order-id-box {
+    /* 기존 Tailwind 클래스 대체: w-full p-6 bg-[#fff3cd] border-4 border-[#ffc107] rounded-xl mb-8 text-center */
+    width: 100%;
+    padding: 24px; /* p-6 */
+    background-color: #fff3cd; /* bg-[#fff3cd] */
+    border: 4px solid #ffc107; /* border-4 border-[#ffc107] */
+    border-radius: 12px; /* rounded-xl */
+    margin-bottom: 32px; /* mb-8 */
+}
+
+#order-id-box .text-xl {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700; /* font-bold */
+    color: #856404; /* text-[#856404] */
+    margin-bottom: 8px; /* mb-2 */
+}
+
+#order-id-box .text-7xl {
+    font-size: 4.5rem; /* text-7xl */
+    font-weight: 900; /* font-black */
+    color: #cc0000; /* text-[#cc0000] */
+    line-height: 1; /* leading-none */
+    word-break: break-all; /* 긴 주문번호를 위해 */
+}
+
+/* ----------------------------------------------------
+ * 3. 안내 사항 및 텍스트 스타일
+ * ---------------------------------------------------- */
+#complete-container .text-xl.text-gray-700 {
+    font-size: 1.25rem;
+    color: #4a5568; /* text-gray-700 */
+    margin-bottom: 24px; /* mb-6 */
+}
+
+.text-center.mb-10 {
+    margin-bottom: 40px; /* mb-10 */
+}
+
+.text-lg.font-semibold {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0077cc; /* text-[#0077cc] */
+    margin-bottom: 8px; /* mb-2 */
+}
+
+.text-sm.text-gray-500 {
+    font-size: 0.875rem;
+    color: #a0aec0; /* text-gray-500 */
+    margin-top: 8px; /* mt-2 */
+}
+
+/* ----------------------------------------------------
+ * 4. 버튼 스타일 및 반응형
+ * ---------------------------------------------------- */
+/* func-btn 클래스 정의 */
+.func-btn {
+    /* 기존 Tailwind 클래스 대체: px-4 py-3 font-bold rounded-lg transition duration-150 */
+    padding: 16px 16px; /* py-4, text-xl 에 맞게 높이 조정 */
+    font-weight: 700;
+    border-radius: 8px; /* rounded-lg */
+    transition: background-color 0.15s ease-in-out;
+    border: none;
+    cursor: pointer;
+}
+
+/* go-to-main-btn (녹색 버튼) */
+#go-to-main-btn {
+    /* 기존 Tailwind 클래스 대체: py-4 text-xl w-full bg-[#4CAF50] text-white hover:bg-[#388e3c] */
+    font-size: 1.25rem; /* text-xl */
+    width: 100%; /* w-full */
+    background-color: #4CAF50; /* GREEN_BTN_CLASS */
+    color: white;
+    box-shadow: 0 4px #388e3c; /* 버튼 그림자 추가 */
+}
+
+#go-to-main-btn:hover {
+    background-color: #388e3c;
+    box-shadow: 0 2px #2e7d32;
+    transform: translateY(2px);
+}
+
+/* ----------------------------------------------------
+ * 5. 미디어 쿼리 (반응형: 모바일 최적화)
+ * ---------------------------------------------------- */
+@media (max-width: 600px) {
+    #complete-container {
+        padding: 24px 16px; /* 모바일에서 좌우 패딩 축소 */
+        margin: 20px auto;
+    }
+
+    #complete-container .text-4xl {
+        font-size: 1.75rem; /* 모바일에서 제목 크기 축소 */
+    }
+
+    #order-id-box .text-7xl {
+        font-size: 3.5rem; /* 모바일에서 주문번호 크기 축소 */
+    }
+
+    #complete-container .text-xl.text-gray-700 {
+        font-size: 1rem; /* 본문 텍스트 축소 */
+    }
+    
+    #go-to-main-btn {
+        font-size: 1rem; /* 버튼 텍스트 크기 축소 */
+        padding: 12px 16px;
+    }
+}

@@ -1,0 +1,328 @@
+/* --- CSS 변수 정의 (colorPalette.ts 대체) --- */
+:root {
+    --color-primary: #008080;
+    --color-primary-dark: #005f5f;
+    --color-primary-light: #E0FFFF;
+    --color-accent: #00A3A3;
+    --color-accent-dark: #007070;
+    --color-background: #F5F5F5;
+    --color-background-light: #FFFFFF;
+    --color-background-medium: #EEEEEE;
+    --color-background-dark: #AAAAAA;
+    --color-text-light: #FFFFFF;
+    --color-text-dark: #333333;
+    --color-text-muted: #666666;
+    --color-danger: #CC0000;
+    --color-danger-dark: #A30000;
+}
+
+/* --- 기본 데스크톱 스타일 (769px 이상) --- */
+
+.admin-product-container {
+    padding: 30px;
+    background: var(--color-background);
+    min-height: 100vh;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.title {
+    color: var(--color-text-dark);
+    font-size: 1.8rem;
+}
+
+.back-button, .add-button, .category-manage-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.back-button {
+    padding: 10px 20px;
+    background-color: var(--color-danger);
+    color: var(--color-text-light);
+    font-size: 1rem;
+}
+.back-button:hover { background-color: var(--color-danger-dark); }
+
+.add-button {
+    padding: 10px 15px;
+    background-color: var(--color-accent);
+    color: var(--color-text-light);
+    font-size: 1rem;
+}
+.add-button:hover { background-color: var(--color-accent-dark); }
+
+.category-manage-button {
+    background-color: var(--color-primary);
+    font-size: 0.95rem;
+    padding: 8px 15px;
+}
+.category-manage-button:hover { background-color: var(--color-primary-dark); }
+
+
+/* 탭 관련 스타일 */
+.tab-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    margin-bottom: 20px;
+    border-bottom: 3px solid var(--color-text-muted);
+}
+
+.tab-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-bottom: -3px; 
+}
+
+.tab-button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    background-color: var(--color-background-dark);
+    color: var(--color-text-dark);
+    border-right: 1px solid var(--color-background);
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+/* ⭐️ is-active 클래스 사용 */
+.tab-button.is-active {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px; 
+}
+
+
+/* 테이블 스타일 */
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-background-light);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.product-table th {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-light);
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.product-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--color-background);
+    color: var(--color-text-dark);
+}
+
+.product-table tr:nth-child(even) {
+    background-color: var(--color-background-medium);
+}
+.product-table tr:hover {
+    background-color: var(--color-primary-light);
+}
+
+
+/* 액션 버튼 스타일 */
+.sold-out-toggle, .action-button, .delete-button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* ⭐️ is-sold-out 클래스 사용 */
+.sold-out-toggle.is-sold-out {
+    background-color: var(--color-danger);
+    color: var(--color-text-light);
+}
+.sold-out-toggle:not(.is-sold-out) {
+    background-color: var(--color-accent);
+    color: var(--color-text-light);
+}
+
+.action-button {
+    padding: 6px 10px;
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-background-light);
+    color: var(--color-primary);
+    margin-left: 8px;
+    transition: all 0.2s;
+}
+
+/* ⭐️ is-primary, is-visible, is-hidden 클래스 사용 */
+.action-button.is-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border-color: var(--color-primary);
+}
+
+.action-button.is-visible {
+    background-color: var(--color-accent);
+    color: var(--color-text-light);
+    border: 1px solid var(--color-accent);
+}
+
+.action-button.is-hidden {
+    background-color: var(--color-background-dark);
+    color: var(--color-text-dark);
+    border: 1px solid var(--color-background-dark);
+}
+
+.delete-button {
+    background-color: var(--color-danger);
+    color: var(--color-text-light);
+    border: none;
+    margin-left: 8px;
+}
+
+
+/* 모바일 카드 뷰를 위한 기본 숨김/표시 설정 (데스크톱) */
+.product-table td::before,
+.product-table tr.mobile-card-view {
+    display: none;
+}
+
+
+/* --- 모바일/태블릿 스타일 (768px 이하) --- */
+
+@media (max-width: 768px) {
+    
+    .admin-product-container {
+        padding: 15px;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .header-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        gap: 8px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .back-button, .add-button {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+    
+    /* 탭 및 버튼 그룹 */
+    .tab-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .tab-button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .button-container {
+        width: 100%;
+        margin-top: 10px;
+        gap: 5px;
+        justify-content: stretch;
+    }
+
+    .category-manage-button {
+        padding: 10px 10px;
+        font-size: 0.8rem;
+        flex-grow: 1;
+    }
+
+    /* 테이블을 모바일 카드 뷰로 변경 */
+    .product-table {
+        display: block;
+        background: none; 
+    }
+
+    .product-table th {
+        display: none; 
+    }
+
+    .product-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid var(--color-text-muted);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        background-color: var(--color-background-light); 
+    }
+    
+    .product-table tr:nth-child(even) {
+        background-color: var(--color-background-light); 
+    }
+    
+    .product-table td {
+        display: block;
+        width: 100%;
+        padding: 8px 15px;
+        border-bottom: none;
+    }
+    
+    /* 모바일 카드 뷰에서 데이터 레이블 표시 */
+    .product-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 120px;
+        color: var(--color-primary-dark);
+        margin-right: 10px;
+    }
+    
+    /* 액션 버튼 셀 레이아웃 조정 */
+    .product-table td.actions-cell {
+        padding-top: 5px;
+        padding-bottom: 15px;
+        text-align: right;
+    }
+    
+    .product-table td.actions-cell::before {
+        display: none;
+    }
+    
+    .sold-out-toggle, .action-button, .delete-button {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .action-button, .delete-button {
+        margin-left: 5px;
+    }
+}
