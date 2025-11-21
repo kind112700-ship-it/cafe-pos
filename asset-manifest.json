@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/cafe-pos/static/css/main.ae080645.css",
+    "main.js": "/cafe-pos/static/js/main.f2c898aa.js",
+    "static/js/453.45885b50.chunk.js": "/cafe-pos/static/js/453.45885b50.chunk.js",
+    "index.html": "/cafe-pos/index.html",
+    "main.ae080645.css.map": "/cafe-pos/static/css/main.ae080645.css.map",
+    "main.f2c898aa.js.map": "/cafe-pos/static/js/main.f2c898aa.js.map",
+    "453.45885b50.chunk.js.map": "/cafe-pos/static/js/453.45885b50.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ae080645.css",
+    "static/js/main.f2c898aa.js"
+  ]
+}

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카페 POS 시스템</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="pos-container">
+
+        <div id="menu-area">
+            <div class="category-tabs">
+                <button class="tab active" data-category="COFFEE">COFFEE</button>
+                <button class="tab" data-category="BEVERAGE">BEVERAGE</button>
+                <button class="tab" data-category="TEA">TEA</button>
+                <button class="tab" data-category="FRAPPUCCINO">FRAPPUCCINO</button>
+                <button class="tab" data-category="AED">AED</button>
+            </div>
+
+            <div class="item-grid">
+
+                <button class="item-card" data-id="1" data-category="COFFEE">
+                    <span class="item-name">에스프레소</span>
+                    <span class="item-price">3,500</span>
+                </button>
+                <button class="item-card" data-id="2" data-category="COFFEE">
+                    <span class="item-name">아메리카노</span>
+                    <span class="item-price">3,500</span>
+                </button>
+                <button class="item-card" data-id="3" data-category="COFFEE">
+                    <span class="item-name">아인슈페너</span>
+                    <span class="item-price">4,500</span>
+                </button>
+                <button class="item-card" data-id="4" data-category="COFFEE">
+                    <span class="item-name">카페라떼</span>
+                    <span class="item-price">4,000</span>
+                </button>
+                <button class="item-card" data-id="5" data-category="COFFEE">
+                    <span class="item-name">카푸치노</span>
+                    <span class="item-price">4,000</span>
+                </button>
+                <button class="item-card" data-id="6" data-category="COFFEE">
+                    <span class="item-name">바닐라라떼</span>
+                    <span class="item-price">4,500</span>
+                </button>
+                <button class="item-card" data-id="7" data-category="COFFEE">
+                    <span class="item-name">헤이즐넛라떼</span>
+                    <span class="item-price">4,500</span>
+                </button>
+                <button class="item-card" data-id="8" data-category="COFFEE">
+                    <span class="item-name">카라멜마끼야또</span>
+                    <span class="item-price">4,500</span>
+                </button>
+                <button class="item-card" data-id="9" data-category="COFFEE">
+                    <span class="item-name">카페모카</span>
+                    <span class="item-price">4,500</span>
+                </button>
+                <button class="item-card" data-id="10" data-category="COFFEE">
+                    <span class="item-name">돌체라떼</span>
+                    <span class="item-price">4,500</span>
+                </button>
+                <button class="item-card" data-id="11" data-category="COFFEE">
+                    <span class="item-name">말차카페라떼</span>
+                    <span class="item-price">5,000</span>
+                </button>
+
+                <button class="item-card" data-id="12" data-category="BEVERAGE">
+                    <span class="item-name">아쌈밀크티</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="13" data-category="BEVERAGE">
+                    <span class="item-name">로얄밀크티</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="14" data-category="BEVERAGE">
+                    <span class="item-name">말차라떼</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="15" data-category="BEVERAGE">
+                    <span class="item-name">초코라떼</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="17" data-category="BEVERAGE">
+                    <span class="item-name">오곡라떼</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="18" data-category="BEVERAGE">
+                    <span class="item-name">고구마라떼</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="19" data-category="BEVERAGE">
+                    <span class="item-name">딸기라떼</span>
+                    <span class="item-price">5,500</span>
+                </button>
+                <button class="item-card" data-id="20" data-category="BEVERAGE">
+                    <span class="item-name">바나나라떼</span>
+                    <span class="item-price">5,500</span>
+                </button>
+
+                <button class="item-card" data-id="21" data-category="TEA">
+                    <span class="item-name">얼그레이</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="22" data-category="TEA">
+                    <span class="item-name">잉글리쉬블랙티</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="23" data-category="TEA">
+                    <span class="item-name">다즐링</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="24" data-category="TEA">
+                    <span class="item-name">캐모마일</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="25" data-category="TEA">
+                    <span class="item-name">페퍼민트</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="26" data-category="TEA">
+                    <span class="item-name">루이보스</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="27" data-category="TEA">
+                    <span class="item-name">레몬차</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="28" data-category="TEA">
+                    <span class="item-name">자몽차</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="29" data-category="TEA">
+                    <span class="item-name">유자차</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="30" data-category="TEA">
+                    <span class="item-name">아이스티</span>
+                    <span class="item-price">5,000</span>
+                </button>
+
+                <button class="item-card" data-id="31" data-category="FRAPPUCCINO">
+                    <span class="item-name">딸기스무디</span>
+                    <span class="item-price">5,500</span>
+                </button>
+                <button class="item-card" data-id="32" data-category="FRAPPUCCINO">
+                    <span class="item-name">망고스무디</span>
+                    <span class="item-price">5,500</span>
+                </button>
+                <button class="item-card" data-id="33" data-category="FRAPPUCCINO">
+                    <span class="item-name">블루베리스무디</span>
+                    <span class="item-price">5,500</span>
+                </button>
+                <button class="item-card" data-id="34" data-category="FRAPPUCCINO">
+                    <span class="item-name">요거트스무디</span>
+                    <span class="item-price">5,500</span>
+                </button>
+                <button class="item-card" data-id="35" data-category="FRAPPUCCINO">
+                    <span class="item-name">모카프라페</span>
+                    <span class="item-price">5,500</span>
+                </button>
+                <button class="item-card" data-id="36" data-category="FRAPPUCCINO">
+                    <span class="item-name">카라멜프라페</span>
+                    <span class="item-price">5,500</span>
+                </button>
+                <button class="item-card" data-id="37" data-category="FRAPPUCCINO">
+                    <span class="item-name">초코프라페</span>
+                    <span class="item-price">5,500</span>
+                </button>
+                <button class="item-card" data-id="38" data-category="FRAPPUCCINO">
+                    <span class="item-name">민트초코프라페</span>
+                    <span class="item-price">5,500</span>
+                </button>
+                <button class="item-card" data-id="39" data-category="FRAPPUCCINO">
+                    <span class="item-name">말차프라페</span>
+                    <span class="item-price">5,500</span>
+                </button>
+                <button class="item-card" data-id="40" data-category="FRAPPUCCINO">
+                    <span class="item-name">쿠앤크프라페</span>
+                    <span class="item-price">5,500</span>
+                </button>
+
+                <button class="item-card" data-id="41" data-category="AED">
+                    <span class="item-name">레몬에이드</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="42" data-category="AED">
+                    <span class="item-name">자몽에이드</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="43" data-category="AED">
+                    <span class="item-name">청포도에이드</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="44" data-category="AED">
+                    <span class="item-name">체리에이드</span>
+                    <span class="item-price">5,000</span>
+                </button>
+                <button class="item-card" data-id="45" data-category="AED">
+                    <span class="item-name">라임에이드</span>
+                    <span class="item-price">5,000</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="order-area">
+
+            <div class="order-header">
+                <h2>주문 목록</h2>
+                <span class="order-count">총 2개 항목</span>
+            </div>
+
+            <ul class="order-list">
+                <li class="order-item">
+                    <span class="item-title">아메리카노 (I)</span>
+                    <span class="item-qty">x 1</span>
+                    <span class="item-subtotal">3,500</span>
+                </li>
+                <li class="order-item selected">
+                    <span class="item-title">카페 라떼 (H)</span>
+                    <span class="item-qty">x 2</span>
+                    <span class="item-subtotal">9,000</span>
+                </li>
+            </ul>
+
+            
+            <div class="action-row">
+                <button class="func-btn number">-</button>
+                <button class="func-btn number count">1</button>
+                <button class="func-btn number">+</button>
+                <button class="func-btn delete">항목 삭제</button>
+            </div>
+            <div class="total-row">
+                <span>총 결제 금액 (Total)</span>
+                <span id="grand-total-display">12,500원</span>
+            </div>
+            <a id="checkout-btn" href="./cart.html">
+                주문하기 (Checkout)
+            </a>
+        </div>
+
+        <div id="option-modal" class="modal-backdrop hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-item-name"></h3>
+                    <span id="modal-item-base-price"></span>
+                </div>
+
+                <div class="modal-body">
+                    <div class="modal-option-group">
+                        <h4>온도 및 기본 옵션</h4>
+                        <div class="option-row" id="modal-temp-size-options">
+                            <button class="modal-opt-btn" data-type="temp" data-value="HOT">HOT</button>
+                            <button class="modal-opt-btn active" data-type="temp" data-value="ICE">ICE</button>
+                            <button class="modal-opt-btn" data-type="modifier" data-value="사이즈 UP">사이즈 UP
+                                (+500)</button>
+                            <button class="modal-opt-btn" data-type="modifier" data-value="샷 추가">샷 추가 (+500)</button>
+                        </div>
+                    </div>
+
+                    <div class="modal-option-group">
+                        <h4>추가 선택 사항</h4>
+                        <div class="modifier-grid" id="modal-modifier-options">
+                            <button class="modal-mod-btn" data-type="modifier" data-value="시럽 추가 (+500)">시럽 추가
+                                (+500)</button>
+                            <button class="modal-mod-btn" data-type="modifier" data-value="휘핑 추가 (+500)">휘핑 추가
+                                (+500)</button>
+                            <button class="modal-mod-btn" data-type="modifier" data-value="두유 변경 (+500)">두유 변경
+                                (+500)</button>
+                            <button class="modal-mod-btn" data-type="modifier" data-value="저지방 우유">저지방 우유</button>
+                            <button class="modal-mod-btn" data-type="modifier" data-value="연하게">연하게</button>
+                            <button class="modal-mod-btn" data-type="modifier" data-value="진하게">진하게</button>
+                        </div>
+                        <div id="memo-options" class="option-content">
+                            <textarea id="modal-memo-input" placeholder="요청 메모를 입력해 주세요" rows="3"
+                                style="width: 100%; padding: 8px; box-sizing: border-box;"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-qty-group">
+                        <h4>수량</h4>
+                        <div class="action-row modal-qty-controls">
+                            <button id="modal-qty-minus" class="func-btn number">-</button>
+                            <span id="modal-qty-display" class="func-btn number count">1</span>
+                            <button id="modal-qty-plus" class="func-btn number">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="modal-cancel-btn">취소</button>
+                    <button id="modal-add-to-order-btn">주문 담기</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <script>
+        $(function () {
+            // 상품 데이터 및 옵션 가격 정의
+            const MENU_ITEMS = {};
+            $('.item-grid .item-card').each(function () {
+                const id = $(this).data('id').toString();
+                const name = $(this).find('.item-name').text();
+                const priceText = $(this).find('.item-price').text().replace(/,/g, '');
+                const price = parseInt(priceText, 10);
+                MENU_ITEMS[id] = { id, name, price, category: $(this).data('category') };
+            });
+
+            const MODIFIER_PRICES = {
+                '사이즈 UP': 500,
+                '샷 추가': 500,
+                '시럽 추가 (+500)': 500,
+                '휘핑 추가 (+500)': 500,
+                '두유 변경 (+500)': 500,
+                '저지방 우유': 0,
+                '연하게': 0,
+                '진하게': 0
+            };
+
+            let currentOrder = {};
+            let selectedItemId = null;
+            let nextUniqueId = 1; // 주문 항목의 고유 ID 생성용
+            let modalItem = {}; // 모달 내에서 임시로 옵션을 저장할 객체
+
+
+            // ----------------------------------------------------
+            // [함수] 모달 관련 로직
+            // ----------------------------------------------------
+            function openModal(itemId) {
+                const itemInfo = MENU_ITEMS[itemId];
+                if (!itemInfo) return;
+
+                // 1. 임시 주문 객체 초기화 (기본값 설정)
+                modalItem = {
+                    baseId: itemId,
+                    name: itemInfo.name,
+                    price: itemInfo.price,
+                    qty: 1,
+                    temp: 'ICE',
+                    modifiers: [],
+                    memo: ''
+                };
+
+                // 2. 모달 UI 업데이트 및 초기화
+                $('#modal-item-name').text(itemInfo.name);
+                $('#modal-item-base-price').text(itemInfo.price.toLocaleString('ko-KR') + '원');
+                $('#modal-qty-display').text(1);
+                $('#modal-memo-input').val('');
+
+                // 옵션 버튼 초기화 및 기본값(ICE) 활성화
+                $('.modal-opt-btn, .modal-mod-btn').removeClass('active');
+                $(`.modal-opt-btn[data-value="ICE"]`).addClass('active');
+
+                // 3. 모달 표시
+                $('#option-modal').removeClass('hidden');
+            }
+
+            function closeModal() {
+                $('#option-modal').addClass('hidden');
+                // $('#memo-options').removeClass('hidden');
+            }
+
+            // ----------------------------------------------------
+            // [함수] 주문 요약 및 UI 업데이트
+            // ----------------------------------------------------
+            function updateOrderSummary() {
+                let grandTotal = 0;
+                $('.order-list').empty();
+
+                const orderKeys = Object.keys(currentOrder).sort((a, b) => parseInt(a) - parseInt(b));
+
+                for (const uniqueId of orderKeys) {
+                    const item = currentOrder[uniqueId];
+
+                    // 기본 가격 + 옵션 가격 계산
+                    let itemPrice = item.price;
+                    let modifierDetailsHtml = '';
+                    let modifierNamesWithPrice = []; // 옵션 이름 및 가격을 저장할 배열
+
+                    if (item.modifiers && Array.isArray(item.modifiers)) {
+                        item.modifiers.forEach(modifier => {
+                            const modPrice = MODIFIER_PRICES[modifier] || 0;
+                            itemPrice += modPrice;
+
+                            let priceDisplay = (modPrice > 0) ? ` (+${modPrice.toLocaleString('ko-KR')})` : '';
+
+                            // 옵션 이름(괄호 제거)과 가격을 결합하여 배열에 저장
+                            modifierNamesWithPrice.push(modifier.replace(/\s?\(\+\d+?\)/g, '') + priceDisplay);
+                        });
+
+                        // 옵션이 있을 경우, 새로운 줄에 표시될 HTML 구조 생성
+                        if (modifierNamesWithPrice.length > 0) {
+                            modifierDetailsHtml = `<div class="modifier-list-line">⨽ ${modifierNamesWithPrice.join(', ')}</div>`;
+                        }
+                    }
+
+                    // ⭐️ 추가: 메모 표시를 위한 HTML 변수 생성 ⭐️
+                    let memoHtml = '';
+                    if (item.memo && item.memo.length > 0) {
+                        memoHtml = `<div class="modifier-list-line memo-line">📝 요청: ${item.memo}</div>`;
+                    }
+
+                    const subtotal = itemPrice * item.qty;
+                    grandTotal += subtotal;
+
+                    const selectedClass = (uniqueId === selectedItemId) ? ' selected' : '';
+                    const tempDisplay = item.temp ? ` (${item.temp.charAt(0)})` : '';
+
+                    // ⭐️ 옵션과 메모 HTML을 모두 포함하도록 수정 ⭐️
+                    const orderHtml = `
+            <li class="order-item${selectedClass}" data-id="${uniqueId}">
+                <div class="main-info">
+                    <span class="item-title">${item.name}${tempDisplay}</span>
+                    <span class="item-qty">x ${item.qty}</span>
+                    <span class="item-subtotal">${subtotal.toLocaleString('ko-KR')}</span>
+                </div>
+                ${modifierDetailsHtml} 
+                ${memoHtml} 
+            </li>
+        `;
+                    $('.order-list').append(orderHtml);
+                }
+
+                $('.order-count').text(`총 ${orderKeys.length}개 항목`);
+                $('#grand-total-display').text(grandTotal.toLocaleString('ko-KR') + '원');
+
+                updateCountDisplay();
+                updateOptionPanel();
+                $('#checkout-btn').prop('disabled', orderKeys.length === 0);
+            }
+            function updateCountDisplay() {
+                // 하단 패널 수량 표시 및 버튼 활성화/비활성화
+                if (selectedItemId && currentOrder[selectedItemId]) {
+                    const qty = currentOrder[selectedItemId].qty;
+                    $('.func-btn.number.count').text(qty);
+                    $('.action-row .func-btn.number:contains("-")').prop('disabled', qty <= 1);
+                    $('.action-row .func-btn.number:contains("+")').prop('disabled', false);
+                    $('.func-btn.delete').prop('disabled', false);
+                } else {
+                    $('.func-btn.number.count').text('0');
+                    $('.action-row .func-btn.number, .func-btn.delete').prop('disabled', true);
+                }
+            }
+
+            function updateOptionPanel() {
+                // 하단 옵션 패널 상태 업데이트 (선택된 항목의 옵션 상태 반영)
+                $('.function-panel button.option, .function-panel button.mod-btn').removeClass('active');
+                if (!selectedItemId || !currentOrder[selectedItemId]) return;
+
+                const item = currentOrder[selectedItemId];
+
+                if (item.temp) {
+                    $(`#temp-options .func-btn.option:contains("${item.temp}")`).addClass('active');
+                }
+                if (item.modifiers && Array.isArray(item.modifiers)) {
+                    item.modifiers.forEach(modifier => {
+                        $(`.func-btn.option:contains("${modifier}")`).addClass('active');
+                        $(`.mod-btn:contains("${modifier}")`).addClass('active');
+                    });
+                }
+            }
+
+
+            // ----------------------------------------------------
+            // [이벤트] 1. 메뉴 항목 클릭 -> 모달 열기 ⭐️로직 변경⭐️
+            // ----------------------------------------------------
+            $('.item-grid').on('click', '.item-card', function () {
+                const itemId = $(this).data('id').toString();
+                openModal(itemId);
+            });
+
+            // ----------------------------------------------------
+            // [이벤트] 2. 모달 내 옵션/수량 조절 ⭐️새 로직⭐️
+            // ----------------------------------------------------
+            $('#option-modal').on('click', '.modal-opt-btn, .modal-mod-btn', function () {
+                const type = $(this).data('type');
+                const value = $(this).data('value');
+
+                if (type === 'temp') {
+                    modalItem.temp = value;
+                    $('#modal-temp-size-options .modal-opt-btn[data-type="temp"]').removeClass('active');
+                    $(this).addClass('active');
+                } else if (type === 'modifier') {
+                    const index = modalItem.modifiers.indexOf(value);
+
+                    if (index > -1) {
+                        modalItem.modifiers.splice(index, 1);
+                        $(this).removeClass('active');
+                    } else {
+                        modalItem.modifiers.push(value);
+                        $(this).addClass('active');
+                    }
+                }
+            });
+
+            $('#modal-qty-plus').on('click', function () {
+                modalItem.qty += 1;
+                $('#modal-qty-display').text(modalItem.qty);
+            });
+
+            $('#modal-qty-minus').on('click', function () {
+                if (modalItem.qty > 1) {
+                    modalItem.qty -= 1;
+                    $('#modal-qty-display').text(modalItem.qty);
+                }
+            });
+
+            // ----------------------------------------------------
+            // [이벤트] 3. 모달 '주문 담기' -> 최종 주문 목록에 추가 ⭐️새 로직⭐️
+            // ----------------------------------------------------
+            $('#modal-add-to-order-btn').on('click', function () {
+                modalItem.memo = $('#modal-memo-input').val().trim();
+                const uniqueId = (nextUniqueId++).toString();
+
+                // 깊은 복사로 새로운 주문 항목 생성
+                currentOrder[uniqueId] = JSON.parse(JSON.stringify(modalItem));
+                currentOrder[uniqueId].id = uniqueId;
+
+                selectedItemId = uniqueId;
+
+                updateOrderSummary();
+                closeModal();
+            });
+
+            // [이벤트] 모달 '취소' 버튼
+            $('#modal-cancel-btn').on('click', closeModal);
+
+            // ----------------------------------------------------
+            // [이벤트] 4. 주문 항목 선택 및 수량/삭제 처리 (기존 로직 유지)
+            // ----------------------------------------------------
+            $('.order-list').on('click', '.order-item', function () {
+                $('.order-list .order-item').removeClass('selected');
+                $(this).addClass('selected');
+                selectedItemId = $(this).data('id').toString();
+
+                updateCountDisplay();
+                updateOptionPanel();
+            });
+
+            $('.action-row .func-btn.number:not(.count)').on('click', function () {
+                if (!selectedItemId || !currentOrder[selectedItemId]) return;
+                const item = currentOrder[selectedItemId];
+                const action = $(this).text().trim();
+                if (action === '+') item.qty += 1;
+                else if (action === '-') { if (item.qty > 1) item.qty -= 1; }
+                updateOrderSummary();
+            });
+
+            $('.func-btn.delete').on('click', function () {
+                if (!selectedItemId || !currentOrder[selectedItemId]) return;
+                delete currentOrder[selectedItemId];
+                selectedItemId = null;
+                updateOrderSummary();
+            });
+
+
+            // ----------------------------------------------------
+            // [이벤트] 5. 하단 옵션 패널 클릭 (이미 주문된 항목의 옵션 수정) ⭐️로직 유지⭐️
+            // ----------------------------------------------------
+            $('.function-panel').on('click', '.option:not(:contains("HOT")):not(:contains("ICE")), .mod-btn', function () {
+                if (!selectedItemId || !currentOrder[selectedItemId]) {
+                    alert('먼저 주문 목록에서 항목을 선택해주세요.');
+                    return;
+                }
+
+                const optionName = $(this).text().trim();
+                const item = currentOrder[selectedItemId];
+                if (!item.modifiers) item.modifiers = [];
+
+                const index = item.modifiers.indexOf(optionName);
+
+                if (index > -1) {
+                    item.modifiers.splice(index, 1);
+                    $(this).removeClass('active');
+                } else {
+                    item.modifiers.push(optionName);
+                    $(this).addClass('active');
+                }
+
+                updateOrderSummary();
+            });
+
+            // 온도 옵션 (HOT/ICE) 수정
+            $('#temp-options .func-btn.option:contains("HOT"), #temp-options .func-btn.option:contains("ICE")').on('click', function () {
+                if (!selectedItemId || !currentOrder[selectedItemId]) {
+                    alert('먼저 주문 목록에서 항목을 선택해주세요.');
+                    return;
+                }
+                currentOrder[selectedItemId].temp = $(this).text().trim();
+                updateOrderSummary();
+            });
+
+
+            // ----------------------------------------------------
+            // [이벤트] 6. 카테고리 탭 (기존 로직 유지)
+            // ----------------------------------------------------
+            $('.category-tabs .tab').on('click', function () {
+                const category = $(this).data('category');
+                $('.category-tabs .tab').removeClass('active');
+                $(this).addClass('active');
+                $('.item-grid .item-card').each(function () {
+                    $(this).data('category') === category ? $(this).show() : $(this).hide();
+                });
+            });
+
+            $('.function-panel .opt-tab').on('click', function () {
+                const targetContentId = $(this).data('content');
+                $('.function-panel .opt-tab').removeClass('active');
+                $(this).addClass('active');
+                $('.function-panel .option-content').removeClass('active').addClass('hidden');
+                $(`#${targetContentId}`).removeClass('hidden').addClass('active');
+            });
+
+            // ----------------------------------------------------
+            // [초기화] 페이지 로드 시
+            // ----------------------------------------------------
+            // 초기화 코드 중복 제거 및 최종 정리
+            currentOrder = {};
+            selectedItemId = null;
+            nextUniqueId = 1;
+            updateOrderSummary();
+
+            // 카테고리 정렬을 위해 COFFEE 탭을 강제로 클릭
+            $('.category-tabs .tab.active[data-category="COFFEE"]').trigger('click');
+            // 옵션 패널 초기 탭 표시
+            $('.function-panel .opt-tab.active').trigger('click');
+        });
+
+
+    </script>
+</body>
+
+</html>

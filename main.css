@@ -1,0 +1,482 @@
+/* 기본 설정 */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f2f2f2;
+}
+
+/* 1. 전체 컨테이너 */
+#pos-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 20px;
+}
+
+/* 2. 메뉴 영역 (좌측) */
+#menu-area {
+    width: 60%;
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 8px #ccc;
+    display: flex; /* flex 추가 */
+    flex-direction: column; /* flex-direction 추가 */
+    
+}
+
+/* 카테고리 탭 */
+.category-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.category-tabs .tab {
+    padding: 10px 15px;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    flex-shrink: 0; /* 탭이 줄어들지 않도록 설정 */
+}
+
+.category-tabs .tab.active {
+    background: #0077cc;
+    color: white;
+}
+
+/* 상품 그리드 */
+.item-grid {
+    flex-grow: 1;
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+    /* auto-fill 대신 auto-fit으로 변경하여 남은 공간을 열들이 균등하게 차지하도록 조정 */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    gap: 15px;
+    /* overflow-y: auto; */
+    padding-right: 5px; 
+    margin-top: 20px;
+}
+
+.item-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 5px;
+    background-color: #e9ecef;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.1s;
+    width: 150px;
+    height: 150px;
+    
+    /* ⭐️ 이 부분을 수정합니다: height와 min-height를 모두 제거하거나 고정값으로 설정 ⭐️ */
+     /* 고정 최소 높이를 유지하여 버튼 크기를 균일하게 함 */
+    /* height: auto; 혹은 height 속성을 아예 제거 */
+    
+}
+.item-card:hover {
+    background: #e1f0ff;
+    border-color: #0077cc;
+}
+
+.item-name {
+    font-size: 1.1em; /* 크기 유지 */
+    font-weight: 600;
+    margin-bottom: 8px;
+    /* 텍스트 줄바꿈 방지 및 ... 표시 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.item-price {
+    font-size: 1.2em; /* 가격 강조 */
+    color: #0077cc; /* 색상 통일 */
+    font-weight: bold;
+}
+
+/* 3. 주문/결제 영역 (우측) */
+#order-area {
+    width: 40%;
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 0 8px #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0; /* 패딩 조정 */
+}
+
+.order-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.order-item {
+    padding: 8px 6px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;   
+    flex-direction: column;
+}
+.order-item .main-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-item.selected {
+    background: #d0e7ff;
+}
+
+.item-title {
+    flex: 3;
+}
+.item-qty {
+    flex: 1;
+    text-align: center;
+    display: block;
+}
+.item-subtotal {
+    flex: 1.5;
+    text-align: right;
+}
+
+
+
+/* 옵션 탭 영역 */
+.option-tabs {
+    display: flex;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.opt-tab {
+    padding: 10px 15px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: transparent;
+    border-bottom: 3px solid transparent;
+    color: #666;
+    transition: all 0.2s;
+}
+
+.opt-tab.active {
+    color: #0077cc;
+    border-bottom: 3px solid #0077cc;
+}
+
+/* 옵션 내용 컨테이너 */
+.option-content {
+    padding: 0 0 5px; 
+}
+.option-content.hidden {
+    display: none;
+}
+.option-content.active {
+    display: block;
+}
+
+/* 버튼 행 */
+.option-row, .action-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.action-row {
+    margin-bottom: 0;
+}
+
+/* 기능 버튼 공통 */
+.func-btn {
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background-color: #e9ecef;
+    color: #333;
+    border: 1px solid #ddd;
+    flex-grow: 1;
+}
+
+/* 옵션 버튼 (Hot/Ice, SizeUp 등) */
+.func-btn.option.active {
+    background: #0077cc;
+    color: white;
+    border-color: #0077cc;
+}
+
+/* 수량 버튼 */
+.func-btn.number {
+    flex-grow: 1;
+    background: #eee;
+    padding: 10px 5px;
+}
+.func-btn.number.count {
+    flex-grow: 2; 
+    background-color: #f7f7f7;
+    font-size: 1.1em;
+}
+
+/* 삭제 버튼 */
+.func-btn.delete {
+    background: #f44336;
+    color: white;
+    border-color: #f44336;
+    flex-grow: 3;
+    float: none; /* float 제거 */
+}
+
+/* 추가 옵션 (Modifier) 그리드 스타일 */
+.modifier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2열 배치 */
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.mod-btn {
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #e9ecef;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+.mod-btn:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* 메모 입력 버튼 */
+.func-btn.full-width {
+    width: 100%;
+    text-align: left;
+    background-color: #fff;
+    border-color: #0077cc;
+    color: #0077cc;
+}
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5px; /* 상하 패딩을 늘려 시각적으로 분리 */
+    margin: 10px 0; /* 주변 요소와 간격 확보 */
+    border-top: 2px solid #0077cc; /* 상단에 파란색 구분선 추가 */
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9; /* 배경색으로 강조 */
+}
+
+.total-row span:first-child {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+#grand-total-display {
+    font-size: 1.8em; /* 금액을 크게 강조 */
+    font-weight: bold;
+    color: #cc0000; /* 빨간색으로 최종 금액 강조 */
+}
+
+#checkout-btn {
+    width: 100%; /* 버튼을 주문 영역 너비 전체로 확장 */
+    padding: 18px 20px; /* 큰 패딩으로 버튼 크기 확보 */
+    margin-top: 15px; /* 위쪽 여백으로 다른 요소와 분리 */
+    border: none;
+    border-radius: 6px;
+    background-color: #4CAF50; /* 녹색 계열로 '결제' 강조 */
+    color: white;
+    font-size: 1.5em; /* 글꼴 크기를 크게 설정 */
+    font-weight: bold;   
+    transition: background-color 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    text-decoration: none;
+}
+
+#checkout-btn:hover {
+    background-color: #45a049; /* 마우스 오버 시 색상 변경 */
+}
+
+.modifier-list {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 4px;
+    padding-left: 5px;
+    word-break: keep-all; /* 단어가 잘리지 않도록 유지 */
+    white-space: normal; /* 줄바꿈 허용 */
+    display: flex;
+    flex-wrap: wrap; /* 옵션이 많을 경우 줄바꿈 처리 */
+    gap: 4px;
+}
+.modifier-list-line {
+    margin-top: 2px;
+    padding-left: 5px; 
+    font-size: 0.8em;
+    color: #666;
+}
+.modifier-list .modifier-detail {
+    background: #f0f0f0;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+/* ⭐️ 모달 창 스타일 (이전에 누락되었을 수 있는 부분) ⭐️ */
+.hidden { display: none !important; }
+.modal-backdrop {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); display: flex;
+    justify-content: center; align-items: center; z-index: 1000;
+}
+.modal-content {
+    background: white; padding: 20px; border-radius: 8px; width: 450px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+.modal-header { border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px; }
+.modal-header h3 { font-size: 1.5em; display: inline-block; margin: 0; }
+#modal-item-base-price { float: right; font-weight: bold; font-size: 1.2em; color: #0077cc; }
+.modal-option-group { margin-bottom: 20px; }
+.modal-option-group h4 { margin-top: 0; margin-bottom: 10px; border-left: 3px solid #0077cc; padding-left: 8px; }
+
+.modal-opt-btn, .modal-mod-btn { 
+    padding: 10px; margin: 5px 5px 5px 0; border: 1px solid #ccc; background: #f9f9f9; 
+    cursor: pointer; border-radius: 4px; transition: all 0.1s;
+    width: 48%; /* 2열 정렬을 위해 */
+}
+.modal-opt-btn.active, .modal-mod-btn.active { background: #0077cc; color: white; border-color: #0077cc; }
+#modal-temp-size-options { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.modifier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.modal-qty-controls { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px; }
+.modal-footer { text-align: right; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }
+#modal-cancel-btn { padding: 10px 20px; background: #ccc; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px; }
+#modal-add-to-order-btn { padding: 10px 20px; background: #0077cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
+.modal-qty-display{text-align: center;}
+
+/* ------------------------------------------- */
+/* ⭐️ 반응형 웹 디자인 (미디어 쿼리) ⭐️ */
+/* ------------------------------------------- */
+
+/* 1. 화면 너비가 1024px 이하일 때 (태블릿 가로 모드) */
+@media (max-width: 1024px) {
+    #pos-container {
+        max-width: 98vw;
+        margin: 10px auto;
+    }
+    
+    #menu-area {
+        width: 55%; /* 메뉴 영역 비율 조정 */
+    }
+    
+    #order-area {
+        width: 45%; /* 주문 영역 비율 조정 */
+    }
+
+    /* 상품 그리드: 열 개수를 3개로 줄임 */
+    .item-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); 
+    }
+    
+    .payment-buttons {
+        /* 1024px 이하에서는 4열 유지 */
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+/* 2. 화면 너비가 768px 이하일 때 (태블릿 세로 모드 또는 모바일) */
+@media (max-width: 768px) {
+    #pos-container {
+        flex-direction: column; /* 세로로 쌓이도록 변경 */
+        max-width: 100%;
+        margin: 0;
+        min-height: 100vh;
+        gap: 0;
+    }
+    
+    #menu-area {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* 메뉴 그리드: 모바일에서는 3열로 고정 */
+    .item-grid {
+        grid-template-columns: repeat(3, 1fr); 
+        padding-right: 0;
+    }
+
+    #order-area {
+        width: 100%;
+        min-height: 50vh; /* 모바일에서 주문 영역이 최소한 화면 절반을 차지하도록 */
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    /* 주문 목록: 높이를 고정하여 스크롤 가능하게 만듦 */
+    .order-list {
+        max-height: 200px; /* 높이 조정 */
+        overflow-y: auto;
+    }
+
+    /* 결제 버튼: 공간 활용을 위해 버튼 크기를 줄여 2x2 그리드로 변경 */
+    .payment-buttons {
+        grid-template-columns: 1fr 1fr; /* 2열로 변경 */
+    }
+    
+    .action-btn {
+        font-size: 1.0em;
+        padding: 10px;
+    }
+    
+    /* 주문 목록 상단 정보의 크기 조정 */
+    .order-header h2 {
+        font-size: 1.2em;
+    }
+    .total-row {
+        padding: 12px 5px;
+        margin: 5px 0;
+    }
+
+    #grand-total-display {
+        font-size: 1.5em; /* 모바일에서 글꼴 크기 약간 줄임 */
+    }
+    #checkout-btn {
+        padding: 15px 10px;
+        margin-top: 10px;
+        font-size: 1.3em;
+    }
+}

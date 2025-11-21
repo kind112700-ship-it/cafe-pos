@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cheackout.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>키오스크 주문 시스템 - Cart</title>
+</head>
+
+<body>
+
+    <div id="checkout-container">
+
+        <div id="order-details-area">
+            <div class="checkout-header">
+                <h2>결제할 주문 내역 확인</h2>
+                <div id="ticket-number-display">주문 번호: <span>A-001</span></div>
+            </div>
+
+            <div class="dine-in-takeout-select">
+                <p class="selection-display active" data-type="dine-in">매장 (For Here)</p>
+            </div>
+
+            <ul id="final-order-list">
+                <li class="final-order-item">
+                    <span class="item-title">아메리카노 (ICE / Size Up)</span>
+                    <span class="item-qty">x 2</span>
+                    <span class="item-subtotal">5,000 원</span>
+                    <div class="item-memo">요청: 샷 하나 더 추가</div>
+                </li>
+                <li class="final-order-item">
+                    <span class="item-title">카페 라떼 (HOT)</span>
+                    <span class="item-qty">x 1</span>
+                    <span class="item-subtotal">4,500 원</span>
+                    <div class="item-memo hidden"></div>
+                </li>
+            </ul>
+
+            <div class="summary-breakdown">
+                <div><span>상품 합계</span> <span id="summary-subtotal">9,500 원</span></div>
+                <div><span>할인 금액</span> <span id="summary-discount">- 0 원</span></div>
+                <div class="summary-total-row">
+                    <span>최종 결제 금액</span>
+                    <span id="final-grand-total">9,500 원</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="payment-actions-area">
+
+            <div class="payment-section member-section">
+                <h3>멤버십 / 포인트 사용</h3>
+                <div class="member-input-row">
+                    <input type="tel" placeholder="휴대폰 번호 입력" id="member-phone">
+                    <button class="func-btn blue-btn" id="member-search-btn">조회</button>
+                </div>
+                <div id="member-info" class="hidden">
+                    <p>잔여 포인트: <span id="current-point">1,500 P</span></p>
+                    <div class="point-use-row">
+                        <input type="number" placeholder="사용할 포인트" id="point-to-use" value="0">
+                        <button class="func-btn small-btn" id="use-all-point-btn">전액 사용</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-section method-section">
+                <h3>결제 수단 선택</h3>
+                <div class="payment-method-grid">
+                    <button class="func-btn pay-method" data-method="card">카드 결제</button>
+                    <button class="func-btn pay-method" data-method="cash">현금 결제</button>
+                    <button class="func-btn pay-method" data-method="mobile">간편 결제</button>
+                    <button class="func-btn pay-method" data-method="split">부분 결제</button>
+                </div>
+
+                <div id="cash-module" class="cash-module hidden">
+                    <label>받은 금액</label>
+                    <input type="number" id="cash-received" placeholder="받은 금액 입력">
+                    <div class="change-display">
+                        거스름돈: <span id="cash-change">0 원</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-section final-action-section">
+                <div class="receipt-select-row">
+                    <span>영수증 발급:</span>
+                    <button class="func-btn small-btn active" data-receipt="paper">종이</button>
+                    <button class="func-btn small-btn" data-receipt="none">미발급</button>
+                </div>               
+
+                <button id="final-checkout-btn">결제 완료 및 주문 확정</button>
+                <button id="cancel-checkout-btn">결제 취소 / 돌아가기</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="confirm-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <h3>결제 확인</h3>
+            <p>총 <span id="modal-confirm-amount" style="color:#cc0000; font-weight:bold;">0 원</span>을 결제하시겠습니까?</p>
+            <div class="modal-footer">
+                <button id="modal-cancel-confirm">취소</button>
+                <button id="modal-proceed-payment">결제 진행</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ... 이전 jQuery 코드 전체를 여기에 그대로 붙여넣기 ...
+        $(document).ready(function () {
+            // ----------------------------------------------------
+            // 1. 초기 금액 계산 (실제 데이터 연동 전, 가상으로 설정)
+            // ----------------------------------------------------
+            let finalTotalAmount = 9500; // 초기 최종 결제 금액 (상품 합계)
+            let currentDiscount = 0;
+
+            // 금액 업데이트 함수 (포인트/할인 적용 시 호출)
+            function updateFinalTotal() {
+                const subtotal = finalTotalAmount + currentDiscount; // 할인 적용 전 금액으로 가정
+                let newTotal = subtotal - currentDiscount;
+
+                // 최종 금액은 0 미만이 될 수 없음
+                if (newTotal < 0) {
+                    newTotal = 0;
+                    currentDiscount = subtotal; // 할인 금액을 상품 합계까지만 적용
+                }
+
+                $('#summary-discount').text(`- ${currentDiscount.toLocaleString()} 원`);
+                $('#final-grand-total').text(`${newTotal.toLocaleString()} 원`);
+
+                // 모달 팝업 금액도 업데이트
+                $('#modal-confirm-amount').text(`${newTotal.toLocaleString()} 원`);
+            }
+
+            // 초기 금액 설정
+            updateFinalTotal();
+
+            // ----------------------------------------------------
+            // 3. 멤버십 포인트 사용 로직
+            // ----------------------------------------------------
+
+            // 가상 포인트 잔액 (실제로는 DB 조회 필요)
+            const MAX_POINT = 5000;
+            $('#current-point').text(`${MAX_POINT.toLocaleString()} P`);
+            $('#member-info').removeClass('hidden'); // 테스트를 위해 바로 표시
+
+            // '전액 사용' 버튼
+            $('#use-all-point-btn').on('click', function () {
+                const total = parseInt($('#summary-subtotal').text().replace(/[^0-9]/g, ''));
+
+                // 상품 합계 또는 최대 잔여 포인트 중 더 작은 값을 적용
+                let usablePoint = Math.min(MAX_POINT, total);
+                $('#point-to-use').val(usablePoint);
+                $('#point-to-use').trigger('input'); // input 이벤트 강제 실행
+            });
+
+            // 사용할 포인트 입력 시 로직
+            $('#point-to-use').on('input', function () {
+                let usePoint = parseInt($(this).val()) || 0;
+                const total = parseInt($('#summary-subtotal').text().replace(/[^0-9]/g, ''));
+
+                // 최대 사용 금액 제한 (잔액 또는 상품 합계 중 더 작은 값)
+                const maxUse = Math.min(MAX_POINT, total);
+
+                if (usePoint > maxUse) {
+                    usePoint = maxUse;
+                    $(this).val(maxUse);
+                } else if (usePoint < 0) {
+                    usePoint = 0;
+                    $(this).val(0);
+                }
+
+                currentDiscount = usePoint;
+                updateFinalTotal(); // 최종 금액 업데이트
+            });
+
+
+            // ----------------------------------------------------
+            // 4. 결제 수단 선택 및 현금 모듈 처리
+            // ----------------------------------------------------
+            let selectedPaymentMethod = '';
+
+            $('.pay-method').on('click', function () {
+                $('.pay-method').removeClass('active');
+                $(this).addClass('active');
+                selectedPaymentMethod = $(this).data('method');
+
+                // 현금 모듈 표시/숨김 처리
+                if (selectedPaymentMethod === 'cash') {
+                    $('#cash-module').slideDown(200);
+                    $('#cash-received').focus();
+                } else {
+                    $('#cash-module').slideUp(200);
+                    // 현금 외 결제 시 거스름돈 초기화
+                    $('#cash-received').val('');
+                    $('#cash-change').text('0 원');
+                }
+
+                console.log("선택된 결제 수단:", selectedPaymentMethod);
+            });
+
+            // 현금 모듈 - 거스름돈 계산
+            $('#cash-received').on('input', function () {
+                const received = parseInt($(this).val()) || 0;
+                const total = parseInt($('#final-grand-total').text().replace(/[^0-9]/g, ''));
+                const change = received - total;
+
+                if (received >= total) {
+                    $('#cash-change').text(`${change.toLocaleString()} 원`);
+                    $('#cash-change').css('color', '#0077cc');
+                } else {
+                    $('#cash-change').text(`${(change).toLocaleString()} 원 (부족)`);
+                    $('#cash-change').css('color', '#f44336'); // 빨간색으로 부족 강조
+                }
+            });
+
+
+            // ----------------------------------------------------
+            // 5. 결제 완료 및 모달 팝업 처리
+            // ----------------------------------------------------
+
+            // '결제 완료' 버튼 클릭 시
+            $('#final-checkout-btn').on('click', function () {
+                if (!selectedPaymentMethod) {
+                    alert('결제 수단을 먼저 선택해 주세요.');
+                    return;
+                }
+
+                const currentTotal = parseInt($('#final-grand-total').text().replace(/[^0-9]/g, ''));
+
+                // 현금 결제 선택 시 받은 금액 검증
+                if (selectedPaymentMethod === 'cash') {
+                    const receivedCash = parseInt($('#cash-received').val()) || 0;
+                    if (receivedCash < currentTotal) {
+                        alert('받은 금액이 최종 결제 금액보다 부족합니다.');
+                        return;
+                    }
+                }
+
+                // 금액 확인 모달 팝업 띄우기
+                $('#modal-confirm-amount').text($('#final-grand-total').text());
+                $('#confirm-modal').fadeIn(300);
+            });
+
+            // 모달 닫기 버튼
+            $('#modal-cancel-confirm').on('click', function () {
+                $('#confirm-modal').fadeOut(300);
+            });
+
+            // 모달 내 '결제 진행' 버튼
+            $('#modal-proceed-payment').on('click', function () {
+                // ⭐️ 실제 서버로 주문 데이터 전송 로직이 들어갈 곳 ⭐️
+
+                alert(`🎉 ${$('#final-grand-total').text()} 결제 완료! 주문을 확정합니다.`);
+                $('#confirm-modal').fadeOut(300);
+
+                // TODO: 주문 번호 발행, DB 저장, KDS 화면 업데이트 등의 서버 통신 로직 추가 필요
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
